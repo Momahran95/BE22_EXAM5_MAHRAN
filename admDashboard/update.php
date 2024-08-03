@@ -29,10 +29,10 @@ if ($row["size"] == "large") {
 }
 $Adopted = $Available = "";
 if ($row["status"] == "available") {
-    $Adopted = "selected";
+    $Available = "selected";
 }
 if ($row["status"] == "adopted") {
-    $Available = "selected";
+    $Adopted = "selected";
 }
 $Vacinnated = $NotVaccinated = "";
 if ($row["vaccine"] == "vaccinated") {
@@ -85,6 +85,7 @@ if (isset($_POST['update'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="../style.css">
     <title>Update Animal</title>
 </head>
 
@@ -101,24 +102,25 @@ if (isset($_POST['update'])) {
                 <input type="text" placeholder="Description" class="form-control mt-3" name="description" value="<?= $row['description'] ?>">
                 <select name="vaccine" class="form-control mt-3" value="<?= $row['vaccine'] ?>">
                     <option value="" disabled selected>Vaccine</option>
-                    <option value="vaccinated">Vaccinated</option>
-                    <option value="not vaccinated">Not vaccinated</option>
+                    <option <?= $Vacinnated ?> value="vaccinated">Vaccinated</option>
+                    <option <?= $NotVaccinated ?> value="not vaccinated">Not vaccinated</option>
                 </select>
                 <input type="text" placeholder="Location" class="form-control mt-3" name="location" value="<?= $row['location'] ?>">
                 <select name="status" class="form-control mt-3" value="<?= $row['status'] ?>">
                     <option value="" disabled selected>Pet's Status</option>
-                    <option value="available">Available</option>
-                    <option value="adopted">Adopted</option>
+                    <option <?= $Available ?> value="available">available</option>
+                    <option <?= $Adopted ?> value="adopted">adopted</option>
                 </select>
                 <select name="size" class="form-control mt-3" value="<?= $row['size'] ?>">
                     <option value="" disabled selected>Size</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
+                    <option <?= $selectedSM ?> value="small">Small</option>
+                    <option <?= $selectedMD ?> value="medium">Medium</option>
+                    <option <?= $selectedLG ?> value="large">Large</option>
                 </select>
                 <input type="file" placeholder="Pet's Photo" class="form-control mt-3" name="photo">
                 <input type="submit" class="button mt-3" name="update" value="update Pet">
             </form>
+            <br>
         </div>
     </div>
 
